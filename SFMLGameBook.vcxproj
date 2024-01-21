@@ -93,6 +93,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="01_Intro\Include\Game.h" />
+    <ClInclude Include="01_Intro\Include\StringHelpers.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="01_Intro\Include\StringHelpers.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

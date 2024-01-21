@@ -34,5 +34,11 @@
     <ClInclude Include="01_Intro\Include\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="01_Intro\Include\StringHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="01_Intro\Include\StringHelpers.inl" />
   </ItemGroup>
 </Project>

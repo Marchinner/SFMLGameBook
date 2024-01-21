@@ -1,14 +1,31 @@
 #include "../Include/Game.h"
+#include "../Include/StringHelpers.h"
+
+const sf::Time Game::TimePerFrame{ sf::seconds(1.f / 60.f) };
+const float Game::PlayerSpeed{ 50.f };
 
 Game::Game()
 	: mWindow{ sf::VideoMode(800,600), "SFML Game" }
 	, mTexture{}
+	, mFont{}
+	, mStatisticsText{}
+	, mStatisticsUpdateTime{}
+	, mStatisticsNumFrames{ 0 }
 	, mPlayer{}
 	, mIsMovingUp{ false }
 	, mIsMovingDown{ false }
 	, mIsMovingLeft{ false }
 	, mIsMovingRight{ false }
 {
+	// load Statistics fonts
+	if (!mFont.loadFromFile("./01_Intro/Media/Fonts/Sansation.ttf"))
+	{
+		// Handle loading error
+	}
+	mStatisticsText.setFont(mFont);
+	mStatisticsText.setPosition(5.f, 5.f);
+	mStatisticsText.setCharacterSize(12);
+
 	// loat player texture
 	if (!mTexture.loadFromFile("./01_Intro/Media/Textures/Eagle.png"))
 	{
@@ -25,13 +42,15 @@ void Game::run()
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	while (mWindow.isOpen())
 	{
-		timeSinceLastUpdate += clock.restart();
+		sf::Time deltaTime = clock.restart();
+		timeSinceLastUpdate += deltaTime;
 		while (timeSinceLastUpdate > TimePerFrame)
 		{
 			timeSinceLastUpdate -= TimePerFrame;
 			processEvents();
 			update(TimePerFrame);
 		}
+		updateStatistics(deltaTime);
 		render();
 	}
 }
@@ -61,22 +80,39 @@ void Game::update(sf::Time deltaTime)
 {
 	sf::Vector2f movement{ 0.f, 0.f };
 	if (mIsMovingUp)
-		movement.y -= 1.f;
+		movement.y -= PlayerSpeed;
 	if (mIsMovingDown)
-		movement.y += 1.f;
+		movement.y += PlayerSpeed;
 	if (mIsMovingLeft)
-		movement.x -= 1.f;
+		movement.x -= PlayerSpeed;
 	if (mIsMovingRight)
-		movement.x += 1.f;
+		movement.x += PlayerSpeed;
 
-	mPlayer.move(movement);
+	mPlayer.move(movement * deltaTime.asSeconds());
 }
 
 void Game::render()
 {
 	mWindow.clear();
 	mWindow.draw(mPlayer);
+	mWindow.draw(mStatisticsText);
 	mWindow.display();
+}
+
+void Game::updateStatistics(sf::Time deltaTime)
+{
+	mStatisticsUpdateTime += deltaTime;
+	mStatisticsNumFrames += 1;
+
+	if (mStatisticsUpdateTime >= sf::seconds(1.0f))
+	{
+		mStatisticsText.setString(
+			"FPS = " + toString(mStatisticsNumFrames) + "\n" +
+			"UPS = " + toString(mStatisticsUpdateTime.asMicroseconds() / mStatisticsNumFrames) + "us");
+
+		mStatisticsUpdateTime -= sf::seconds(1.0f);
+		mStatisticsNumFrames = 0;
+	}
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
