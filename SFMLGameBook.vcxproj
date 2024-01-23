@@ -82,21 +82,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Font Include="01_Intro\Media\Fonts\Sansation.ttf" />
+    <ClCompile Include="02_Resources\Source\Game.cpp" />
+    <ClCompile Include="02_Resources\Source\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="01_Intro\Media\Textures\Eagle.png" />
+    <ClInclude Include="02_Resources\Include\Game.h" />
+    <ClInclude Include="02_Resources\Include\ResourceHolder.h" />
+    <ClInclude Include="02_Resources\Include\StringHelpers.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="01_Intro\Source\Game.cpp" />
-    <ClCompile Include="01_Intro\Source\Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="01_Intro\Include\Game.h" />
-    <ClInclude Include="01_Intro\Include\StringHelpers.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="01_Intro\Include\StringHelpers.inl" />
+    <Image Include="02_Resources\Media\Textures\Desert.png" />
+    <Image Include="02_Resources\Media\Textures\Eagle.png" />
+    <Image Include="02_Resources\Media\Textures\Raptor.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
