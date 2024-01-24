@@ -10,6 +10,22 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="03_World\Include\Aircraft.h" />
+    <ClInclude Include="03_World\Include\Entity.h" />
+    <ClInclude Include="03_World\Include\Game.h" />
+    <ClInclude Include="03_World\Include\ResourceHolder.h" />
+    <ClInclude Include="03_World\Include\ResourceIdentifiers.h" />
+    <ClInclude Include="03_World\Include\StringHelpers.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="03_World\Include\SceneNode.h" />
+    <ClCompile Include="03_World\Source\Aircraft.cpp" />
+    <ClCompile Include="03_World\Source\Entity.cpp" />
+    <ClCompile Include="03_World\Source\Game.cpp" />
+    <ClCompile Include="03_World\Source\Main.cpp" />
+    <ClCompile Include="03_World\Source\SceneNode.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -81,20 +97,6 @@
       <AdditionalDependencies>sfml-system-s.lib;sfml-window-s.lib;sfml-graphics-s.lib;sfml-audio-s.lib;sfml-network-s.lib;winmm.lib;opengl32.lib;gdi32.lib;freetype.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="02_Resources\Source\Game.cpp" />
-    <ClCompile Include="02_Resources\Source\Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="02_Resources\Include\Game.h" />
-    <ClInclude Include="02_Resources\Include\ResourceHolder.h" />
-    <ClInclude Include="02_Resources\Include\StringHelpers.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="02_Resources\Media\Textures\Desert.png" />
-    <Image Include="02_Resources\Media\Textures\Eagle.png" />
-    <Image Include="02_Resources\Media\Textures\Raptor.png" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
